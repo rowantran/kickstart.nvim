@@ -40,3 +40,11 @@ vim.keymap.set('', 'l', 'k')
 -- Also swap movement keys for navigating visual lines
 vim.keymap.set('n', 'gh', 'gj')
 vim.keymap.set('n', 'gl', 'gk')
+
+-- Keybinds to open splits
+vim.keymap.set('n', '<leader>x', '<C-w>s', { desc = 'Open a horizontal split' })
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Open a [V]ertical split' })
+
+-- Clipboard
+vim.keymap.set('', '<leader>y', '"+y', { desc = '[Y]ank to system clipboard' })
+vim.keymap.set('', '<leader>p', '"+p', { desc = '[P]aste from system clipboard' })
