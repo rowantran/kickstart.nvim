@@ -1,15 +1,30 @@
-local function check_colorscheme()
-  local file = assert(io.open(os.getenv 'HOME' .. '/.desktop_scripts/current_theme', 'r'))
+-- Config
+local currentThemeFile = vim.fn.expand '~/.desktop_scripts/current_theme'
+local dark_colorscheme = 'catppuccin-macchiato'
+local light_colorscheme = 'catppuccin-latte'
+-- end config
+
+local function load_colorscheme()
+  local file = assert(io.open(currentThemeFile))
   local content = file:read '*a'
   file:close()
 
-  if content:find '^0' then
-    -- dark mode
-    return 'catppuccin-macchiato'
-  else
-    -- light mode
-    return 'catppuccin-latte'
-  end
+  local colorscheme = (content:find '^0' and dark_colorscheme or light_colorscheme)
+  vim.cmd.colorscheme(colorscheme)
+end
+
+local w = vim.uv.new_fs_event()
+
+local watch_file
+local function on_change(err, fname, status)
+  load_colorscheme()
+  -- Debounce: stop/start
+  w:stop()
+  watch_file()
+end
+
+watch_file = function()
+  w:start(currentThemeFile, {}, vim.schedule_wrap(on_change))
 end
 
 return {
@@ -31,7 +46,10 @@ return {
     -- Load the colorscheme here.
     -- Like many other themes, this one has different styles, and you could load
     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-    vim.cmd.colorscheme(check_colorscheme())
+    load_colorscheme()
+
+    -- Start watching theme file to automatically reload colorscheme once it changes
+    watch_file()
 
     -- You can configure highlights by doing something like:
     vim.cmd.hi 'Comment gui=none'
