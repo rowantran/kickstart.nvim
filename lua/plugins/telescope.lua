@@ -21,6 +21,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
+    -- Provide file browser picker
+    { 'nvim-telescope/telescope-file-browser.nvim' },
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -64,9 +67,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
+    pcall(require('telescope').load_extension, 'file_browser')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
+    local extensions = require('telescope').extensions
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
     vim.keymap.set('n', '<leader>sa', builtin.find_files, { desc = '[S]earch [A]ll Files' })
@@ -78,6 +83,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', '<leader>b', extensions.file_browser.file_browser, { desc = '[B]rowse files '})
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
