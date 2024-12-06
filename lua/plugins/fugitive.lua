@@ -1,6 +1,6 @@
 return {
   'tpope/vim-fugitive',
-  config = function()
+  init = function()
     vim.keymap.set('n', '<leader>gs', ':Git<CR>', { desc = '[G]it [S]tatus' })
     vim.keymap.set('n', '<leader>gd', ':Gdiff<CR>', { desc = '[G]it [D]iff' })
   end
