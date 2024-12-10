@@ -5,6 +5,6 @@ return {
   opts = {},
   init = function()
     local oil = require('oil')
-    vim.keymap.set('n', '<leader>o', function() oil.open('.') end, { desc = '[O]pen cwd using Oil' })
+    vim.keymap.set('n', '<leader>o', oil.open, { desc = '[O]pen cwd using Oil' })
   end
 }
