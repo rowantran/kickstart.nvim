@@ -1,7 +1,7 @@
 -- Config
 local currentThemeFile = vim.fn.expand '~/.desktop_scripts/current_theme'
 local dark_colorscheme = 'gruvbox'
-local light_colorscheme = 'catppuccin-latte'
+local light_colorscheme = 'solarized'
 -- end config
 
 local function load_colorscheme()
@@ -60,5 +60,8 @@ return {
   },
   {
     "ellisonleao/gruvbox.nvim"
+  },
+  {
+    "shaunsingh/solarized.nvim"
   }
 }
