@@ -22,6 +22,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
 
+    -- Show sticky context of current buffer contents
+    { 'nvim-treesitter/nvim-treesitter-context' },
+
     -- Provide file browser picker
     -- { 'nvim-telescope/telescope-file-browser.nvim' },
   },
