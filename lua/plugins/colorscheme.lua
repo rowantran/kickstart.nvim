@@ -1,7 +1,7 @@
 -- Config
 local currentThemeFile = vim.fn.expand '~/.desktop_scripts/current_theme'
 local dark_colorscheme = 'gruvbox'
-local light_colorscheme = 'solarized'
+local light_colorscheme = 'solarized8'
 -- end config
 
 local function load_colorscheme()
@@ -55,13 +55,14 @@ return {
       watch_file()
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
   {
     "ellisonleao/gruvbox.nvim"
   },
   {
-    "shaunsingh/solarized.nvim"
-  }
+    "lifepillar/vim-solarized8",
+    branch = "neovim"
+  },
 }
