@@ -42,9 +42,11 @@ vim.keymap.set('n', 'gh', 'gj')
 vim.keymap.set('n', 'gl', 'gk')
 
 -- Keybinds to open splits
-vim.keymap.set('n', '<leader>x', '<C-w>s', { desc = 'Open a horizontal split' })
-vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Open a [V]ertical split' })
+vim.keymap.set('n', '<leader>z', '<C-w>s', { desc = 'Open a hori[z]ontal split' })
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Open a [v]ertical split' })
 
 -- Clipboard
-vim.keymap.set('', '<leader>y', '"+y', { desc = '[Y]ank to system clipboard' })
-vim.keymap.set('', '<leader>p', '"+p', { desc = '[P]aste from system clipboard' })
+vim.keymap.set('', '<leader>y', '"+y', { desc = '[y]ank to system clipboard' })
+vim.keymap.set('', '<leader>Y', '"+y$', { desc = '[Y]ank rest of line to system clipboard' })
+vim.keymap.set('', '<leader>p', '"+p', { desc = '[p]aste from system clipboard' })
+vim.keymap.set('', '<leader>P', '"+P', { desc = '[P]aste behind cursor from system clipboard' })
