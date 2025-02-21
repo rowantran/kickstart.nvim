@@ -499,7 +499,12 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       -- Show sticky context of current buffer contents
-      { 'nvim-treesitter/nvim-treesitter-context' },
+      {
+        'nvim-treesitter/nvim-treesitter-context',
+        opts = {
+          multiline_threshold = 3,
+        },
+      },
     },
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts

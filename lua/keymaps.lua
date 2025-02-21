@@ -22,9 +22,6 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
-vim.keymap.set('n', '<leader>w', '<C-w>', { desc = '[w]indow commands' })
-
 -- Swap hjkl movement keys to make them more usable in Colemak-DH
 vim.keymap.set('', 'j', 'h')
 vim.keymap.set('', 'k', 'l')
