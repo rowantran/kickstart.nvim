@@ -41,3 +41,8 @@ vim.keymap.set('', '<leader>y', '"+y', { desc = '[y]ank to system clipboard' })
 vim.keymap.set('', '<leader>Y', '"+y$', { desc = '[Y]ank rest of line to system clipboard' })
 vim.keymap.set('', '<leader>p', '"+p', { desc = '[p]aste from system clipboard' })
 vim.keymap.set('', '<leader>P', '"+P', { desc = '[P]aste behind cursor from system clipboard' })
+
+-- Diagnostics
+-- Same as nvim defaults, but manually binding enables the float window.
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
