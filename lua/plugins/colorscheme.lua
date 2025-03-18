@@ -13,6 +13,8 @@ local function load_colorscheme()
   vim.o.background = (is_dark and 'dark' or 'light')
   local colorscheme = (is_dark and dark_colorscheme or light_colorscheme)
   vim.cmd.colorscheme(colorscheme)
+
+  vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 end
 
 local w = vim.uv.new_fs_event()
