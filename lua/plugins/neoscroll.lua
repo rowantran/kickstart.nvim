@@ -3,6 +3,6 @@ return {
   opts = {},
   enabled = function()
     local hostname = vim.fn.hostname()
-    return not string.find(hostname, "compute.internal") and not string.find(hostname, "dev-dsk")
+    return (string.find(hostname, "compute.internal") == nil) and (string.find(hostname, "dev%-dsk") == nil)
   end
 }
