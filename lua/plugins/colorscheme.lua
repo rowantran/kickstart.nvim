@@ -1,7 +1,7 @@
 -- Config
 local currentThemeFile = vim.fn.expand '~/.desktop_scripts/current_theme'
-local dark_colorscheme = 'gruvbox'
-local light_colorscheme = 'gruvbox'
+local dark_colorscheme = 'gruvbox-material'
+local light_colorscheme = 'gruvbox-material'
 -- end config
 
 local function load_colorscheme()
@@ -62,6 +62,12 @@ return {
   },
   {
     "ellisonleao/gruvbox.nvim"
+  },
+  {
+    "sainnhe/gruvbox-material",
+    config = function()
+      vim.g.gruvbox_material_enable_italic = true
+    end
   },
   {
     "lifepillar/vim-solarized8",
