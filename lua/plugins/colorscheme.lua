@@ -14,7 +14,9 @@ local function load_colorscheme()
   local colorscheme = (is_dark and dark_colorscheme or light_colorscheme)
   vim.cmd.colorscheme(colorscheme)
 
-  vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+  for _, hlgroup in ipairs({'Normal', 'NormalNC'}) do
+    vim.api.nvim_set_hl(0, hlgroup, { bg = 'none' })
+  end
 end
 
 local w = vim.uv.new_fs_event()
