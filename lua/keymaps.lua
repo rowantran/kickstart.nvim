@@ -33,8 +33,8 @@ vim.keymap.set('n', 'gh', 'gj')
 vim.keymap.set('n', 'gl', 'gk')
 
 -- Keybinds to open splits
-vim.keymap.set('n', '<leader>z', '<C-w>s', { desc = 'Open a hori[z]ontal split' })
-vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Open a [v]ertical split' })
+vim.keymap.set('n', '<leader>z', '<C-w>s', { desc = 'Open a hori[z]ontal split', remap = true })
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Open a [v]ertical split', remap = true })
 
 -- Clipboard
 vim.keymap.set('', '<leader>y', '"+y', { desc = '[y]ank to system clipboard' })

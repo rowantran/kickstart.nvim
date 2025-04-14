@@ -22,10 +22,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     {
-        "nvim-telescope/telescope-live-grep-args.nvim",
-        -- This will not install any breaking changes.
-        -- For major updates, this must be adjusted manually.
-        version = "^1.0.0",
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      -- This will not install any breaking changes.
+      -- For major updates, this must be adjusted manually.
+      version = '^1.0.0',
     },
     -- Provide file browser picker
     -- { 'nvim-telescope/telescope-file-browser.nvim' },
@@ -59,13 +59,21 @@ return { -- Fuzzy Finder (files, lsp, etc)
       defaults = {
         -- TODO: update to filename_first once released (https://github.com/nvim-telescope/telescope.nvim/pull/3010)
         -- TODO: add path highlighting once released (https://github.com/nvim-telescope/telescope.nvim/issues/2014)
-        path_display = {'truncate'},
+        path_display = { 'truncate' },
+        wrap_results = true,
+        mappings = {
+          i = {
+            ['<C-h>'] = 'which_key',
+            ['<C-Down>'] = require('telescope.actions').cycle_history_next,
+            ['<C-Up>'] = require('telescope.actions').cycle_history_prev,
+          },
+        },
       },
       extensions = {
         ['ui-select'] = {
-          require('telescope.themes').get_dropdown({
-            wrap_results = true
-          }),
+          require('telescope.themes').get_dropdown {
+            wrap_results = true,
+          },
         },
       },
     }
