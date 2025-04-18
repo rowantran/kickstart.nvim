@@ -60,18 +60,28 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
+        local del_if_exists = function(keys, mode)
+          mode = mode or 'n'
+          if vim.fn.mapcheck(keys, mode) ~= "" then
+            vim.keymap.del(mode, keys)
+          end
+        end
+
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
         map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
         -- Find references for the word under your cursor.
+        -- Delete default neovim lsp binds that conflict.
+        del_if_exists('gra')
+        del_if_exists('gri')
+        del_if_exists('grn')
+        del_if_exists('grr')
         map(
           'gr',
           function()
-            require('telescope.builtin').lsp_references({
-              show_line = false,
-            })
+            require('telescope.builtin').lsp_references()
           end,
           '[G]oto [R]eferences'
         )
