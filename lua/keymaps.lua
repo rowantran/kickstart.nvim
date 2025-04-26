@@ -32,9 +32,10 @@ vim.keymap.set('', 'l', 'k')
 vim.keymap.set('n', 'gh', 'gj')
 vim.keymap.set('n', 'gl', 'gk')
 
--- Keybinds to open splits
+-- Keybinds to open/close splits
 vim.keymap.set('n', '<leader>z', '<C-w>s', { desc = 'Open a hori[z]ontal split', remap = true })
 vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Open a [v]ertical split', remap = true })
+vim.keymap.set('n', '<leader>x', '<C-w>q', { desc = 'Close / [q]uit the current split', remap = true })
 
 -- Clipboard
 vim.keymap.set('', '<leader>y', '"+y', { desc = '[y]ank to system clipboard' })
