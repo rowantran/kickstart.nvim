@@ -57,7 +57,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --  All the info you're looking for is in `:help telescope.setup()`
       --
       defaults = {
-        -- TODO: add path highlighting once released (https://github.com/nvim-telescope/telescope.nvim/issues/2014)
         path_display = { 'filename_first' },
         wrap_results = true,
         mappings = {
