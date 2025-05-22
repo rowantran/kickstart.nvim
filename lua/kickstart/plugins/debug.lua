@@ -64,6 +64,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'js-debug-adapter',
       },
     }
 
@@ -101,5 +102,41 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+
+    require('dap').adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug-adapter',
+        -- 💀 Make sure to update this path to point to your installation
+        args = { '${port}' },
+      },
+    }
+
+    for _, language in ipairs { 'typescript', 'javascript' } do
+      require('dap').configurations[language] = {
+        {
+          type = 'pwa-node',
+          request = 'launch',
+          name = 'Launch file',
+          runtimeExecutable = 'node',
+          runtimeArgs = {
+            '--inspect',
+            '--inspect-wait',
+          },
+          program = function()
+            local path = vim.fn.input({
+              prompt = 'Path to executable: ',
+              default = vim.fn.getcwd() .. '/',
+              completion = 'file'
+            })
+            return (path and path ~= "") and path or dap.ABORT
+          end,
+          cwd = '${workspaceFolder}',
+          attachSimplePort = 9229,
+        },
+      }
+    end
   end,
 }
