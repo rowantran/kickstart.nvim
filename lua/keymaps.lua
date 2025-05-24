@@ -43,6 +43,9 @@ vim.keymap.set('', '<leader>Y', '"+y$', { desc = '[Y]ank rest of line to system 
 vim.keymap.set('', '<leader>p', '"+p', { desc = '[p]aste from system clipboard' })
 vim.keymap.set('', '<leader>P', '"+P', { desc = '[P]aste behind cursor from system clipboard' })
 
+-- Quick paste in insert mode
+vim.keymap.set('i', '<C-f>', '<C-r>"')
+
 -- Diagnostics
 -- Same as nvim defaults, but manually binding enables the float window.
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
