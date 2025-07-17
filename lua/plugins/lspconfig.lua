@@ -81,7 +81,7 @@ return {
         map(
           'gr',
           function()
-            require('telescope.builtin').lsp_references()
+            require('telescope.builtin').lsp_references({ include_current_line = true })
           end,
           '[G]oto [R]eferences'
         )
