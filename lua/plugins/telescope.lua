@@ -52,6 +52,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
+    local actions = require('telescope.actions')
     require('telescope').setup {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
@@ -62,8 +63,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
         mappings = {
           i = {
             ['<C-h>'] = 'which_key',
-            ['<C-Down>'] = require('telescope.actions').cycle_history_next,
-            ['<C-Up>'] = require('telescope.actions').cycle_history_prev,
+            ['<C-Down>'] = actions.cycle_history_next,
+            ['<C-Up>'] = actions.cycle_history_prev,
+            ['<C-q>s'] = actions.send_selected_to_qflist + actions.open_qflist,
+            ['<C-q>a'] = actions.send_to_qflist + actions.open_qflist,
           },
         },
       },
