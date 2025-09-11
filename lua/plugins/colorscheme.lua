@@ -9,7 +9,7 @@ local function load_colorscheme()
   local content = file:read '*a'
   file:close()
 
-  local is_dark = content:find '^0'
+  local is_dark = content:find '^dark'
   vim.o.background = (is_dark and 'dark' or 'light')
   local colorscheme = (is_dark and dark_colorscheme or light_colorscheme)
   vim.cmd.colorscheme(colorscheme)
