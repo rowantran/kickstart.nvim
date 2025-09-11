@@ -46,5 +46,6 @@
   "vim-solarized8": { "branch": "neovim", "commit": "cddfb6e61f4c92f22b1ddce7d60e32688d700ed8" },
   "vim-tmux-navigator": { "branch": "master", "commit": "412c474e97468e7934b9c217064025ea7a69e05e" },
   "vim-yaml-jinja": { "branch": "master", "commit": "2279346a8f10bc0b1b149f5b71b5518a53e94ec7" },
+  "vimtex": { "branch": "master", "commit": "dc90feacb86f7b85b0b791d8073eefc769a23725" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }
 }

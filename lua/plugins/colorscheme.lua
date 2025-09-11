@@ -1,5 +1,5 @@
 -- Config
-local currentThemeFile = vim.fn.expand '~/.desktop_scripts/current_theme'
+local currentThemeFile = vim.fn.expand '~/.config/current_theme'
 local dark_colorscheme = 'gruvbox-material'
 local light_colorscheme = 'gruvbox-material'
 -- end config
