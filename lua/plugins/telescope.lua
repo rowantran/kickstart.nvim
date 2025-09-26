@@ -67,6 +67,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
             ['<C-Up>'] = actions.cycle_history_prev,
             ['<C-q>s'] = actions.send_selected_to_qflist + actions.open_qflist,
             ['<C-q>a'] = actions.send_to_qflist + actions.open_qflist,
+            ['<C-f>'] = actions.to_fuzzy_refine,
           },
         },
       },
