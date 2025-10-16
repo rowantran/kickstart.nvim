@@ -58,3 +58,10 @@ vim.keymap.set('i', '<C-f>', '<C-r>"')
 -- Same as nvim defaults, but manually binding enables the float window.
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+
+-- unbind default neovim keybinds to free up 'gr'
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'grt')
