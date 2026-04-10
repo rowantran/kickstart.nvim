@@ -522,8 +522,15 @@ require('lazy').setup({
       indent = { enable = false, disable = { 'ruby' } },
     },
     init = function()
+      local ts = require 'nvim-treesitter'
       vim.api.nvim_create_autocmd('FileType', {
-        callback = function()
+        callback = function(event)
+          -- Auto-install missing parsers on file open
+          local lang = vim.treesitter.language.get_lang(event.match) or event.match
+          local ok, task = pcall(ts.install, { lang }, { summary = true })
+          if ok and task then
+            task:wait(10000)
+          end
           -- Enable treesitter highlighting and disable regex syntax
           pcall(vim.treesitter.start)
           -- Enable treesitter-based indentation
@@ -531,7 +538,7 @@ require('lazy').setup({
         end,
       })
 
-      local ensureInstalled = { 'bash', 'c', 'diff', 'gitcommit', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local ensureInstalled = { 'bash', 'c', 'diff', 'gitcommit', 'html', 'json', 'json5', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
       local alreadyInstalled = require('nvim-treesitter.config').get_installed()
       local parsersToInstall = vim
         .iter(ensureInstalled)
