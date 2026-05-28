@@ -27,6 +27,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
       -- For major updates, this must be adjusted manually.
       version = '^1.0.0',
     },
+    {
+      'zschreur/telescope-jj.nvim',
+      commit = '0a2a928dc873d98cb8edddef1c9f7c63d4fbbf2d',
+    },
     -- Provide file browser picker
     -- { 'nvim-telescope/telescope-file-browser.nvim' },
   },
@@ -52,7 +56,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
-    local actions = require('telescope.actions')
+    local actions = require 'telescope.actions'
     require('telescope').setup {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
@@ -84,14 +88,30 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'file_browser')
+    pcall(require('telescope').load_extension, 'jj')
+
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
     local extensions = require('telescope').extensions
+
+    -- Combined JJ/Git VCS picker
+    local vcs_picker = function(opts)
+      local jj_pick_status, jj_res = pcall(extensions.jj.files, opts)
+      if jj_pick_status then
+        return
+      end
+
+      local git_files_status, git_res = pcall(builtin.git_files, opts)
+      if not git_files_status then
+        error('Could not launch jj/git files: \n' .. jj_res .. '\n' .. git_res)
+      end
+    end
+
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
     vim.keymap.set('n', '<leader>sa', builtin.find_files, { desc = '[S]earch [A]ll Files' })
-    vim.keymap.set('n', '<leader>sf', builtin.git_files, { desc = '[S]earch Git [F]iles' })
+    vim.keymap.set('n', '<leader>sf', vcs_picker, { desc = '[S]earch JJ/Git [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>sg', extensions.live_grep_args.live_grep_args, { desc = '[S]earch by [G]rep' })
