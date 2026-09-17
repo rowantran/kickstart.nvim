@@ -527,7 +527,7 @@ require('lazy').setup({
         callback = function(event)
           -- Auto-install missing parsers on file open
           local lang = vim.treesitter.language.get_lang(event.match) or event.match
-          local ok, task = pcall(ts.install, { lang }, { summary = true })
+          local ok, task = pcall(ts.install, { lang }, { summary = false })
           if ok and task then
             task:wait(10000)
           end
